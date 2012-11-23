@@ -3,31 +3,30 @@
 
 class Admin extends User {
     
+	
     const qualite = "BO";
     
-    function __construct($login,$mdp,$email)
+    function __construct($email,$mdp)
 	{ 
-        parent::__construct($login,$mdp,$email);
+        parent::__construct($email,$mdp);
     }
     
-	
     public function bloqCompte() 
 	{
-        
+        $connexion = ConnexionBD::getInstance();
+		
+		$sql = "UPDATE membre SET etat = 'B' WHERE idMembreR = '".$_GET['id']."' ";
+		$req = $connexion->prepare($sql);
+		$req->execute();
     }
     
-    public function suppCompte() 
+    public function supprimCompte() 
 	{
-        
-    }
-    
-    public function modifierAuteur() {
-        
-    }
-   
-    public function envoiFormMdp() 
-	{
-        
+        $connexion = ConnexionBD::getInstance();
+		
+		$sql = "DELETE FROM membre WHERE idMembreR = '".$_GET['id']."' ";
+		$req = $connexion->prepare($sql);
+		$req->execute();
     }
     
 }

@@ -2,24 +2,22 @@
 
 class User {
 
-    protected $login;
-    protected $mdp;
     protected $email;
+    protected $mdp;
     
-    function __construct($login="", $mdp="", $email="") 
+    function __construct($email="", $mdp="") 
 	{
-        $this->login = $login;
-        $this->mdp = $mdp;
         $this->email = $email;
+        $this->mdp = $mdp;
     }
    
     public function authentification()
     {
 		$connexion = ConnexionBD::getInstance();
 		
-		$sql = "SELECT * FROM user WHERE login=? AND mdp=?";
+		$sql = "SELECT * FROM membre WHERE email=? AND mdp=?";
 		$req = $connexion->prepare($sql);
-		$param = array($_POST['login'],$_POST['mdp']);
+		$param = array($_POST['email'],$_POST['mdp']);
 		$req->execute($param);
 		
 		$data = $req->fetch();
@@ -39,9 +37,9 @@ class User {
 		$connexion = ConnexionBD::getInstance();
 		
 		$list=array();
-		$sql = "SELECT * FROM client WHERE sexe=? AND age=?";
+		$sql = "SELECT * FROM membre WHERE sexe=? BETWEEN age=? and age=?";
 		$req = $connexion->prepare($sql);
-		$param = array($_POST['sexe'],$_POST['age']);
+		$param = array($_POST['sexe'],$_POST['age1'],$_POST['age2']);
 		$req->execute($param);
  
         while ($data =$req->fetch())
@@ -53,14 +51,14 @@ class User {
 	
 	}
 
-    public function getLogin() 
+    public function getEmail()
 	{
-        return $this->login;
+        return $this->email;
     }
 
-    public function setLogin($login) 
+    public function setEmail($email)
 	{
-        $this->login = $login;
+        $this->email = $email;
     }
 
     public function getMdp()
@@ -72,17 +70,6 @@ class User {
 	{
         $this->mdp = $mdp;
     }
-
-    public function getEmail()
-	{
-        return $this->email;
-    }
-
-    public function setEmail($email)
-	{
-        $this->email = $email;
-    }
-
 
 }
 

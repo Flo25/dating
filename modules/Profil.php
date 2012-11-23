@@ -2,8 +2,8 @@
 
 class Profil {
 
+	private $lieu;
     private $job;
-    private $lieu;
     private $poids;
 	private $taille;
 	private $origine;
@@ -11,10 +11,10 @@ class Profil {
 	private $yeux;
 	private $photo;
     
-    function __construct($job,$lieu,$poids,$taille,$origine,$cheveux,$yeux,$photo) 
+    function __construct($lieu,$job,$poids,$taille,$origine,$cheveux,$yeux,$photo) 
 	{
-        $this->job = $job;
         $this->lieu = $lieu;
+		$this->job = $job;
         $this->poids = $poids;
 		$this->taille = $taille;
         $this->origine = $origine;
@@ -23,6 +23,16 @@ class Profil {
         $this->photo = $photo;
     }
 
+	public function getLieu()
+	{
+        return $this->lieu;
+    }
+
+    public function setLieu($lieu) 
+	{
+        $this->lieu = $lieu;
+    }
+	
     public function getJob() 
 	{
         return $this->job;
@@ -31,16 +41,6 @@ class Profil {
     public function setJob($job) 
 	{
         $this->job = $job;
-    }
-
-    public function getLieu()
-	{
-        return $this->lieu;
-    }
-
-    public function setLieu($lieu) 
-	{
-        $this->lieu = $lieu;
     }
 
     public function getPoids()
