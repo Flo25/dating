@@ -1,5 +1,7 @@
 <?php
 
+session_start();
+
 //On inclut le modèle
 include('/../model/ConnexionBD.php');
 include('/../model/User.php');
