@@ -1,7 +1,7 @@
 <!doctype html>
 <html>
 	<head>
-		<title>Test</title>
+		<title>Insta Dating</title>
 	</head>
 	
 	<body>
