@@ -1,6 +1,6 @@
 <?php
 
-class Homme extends Client {
+class Homme extends Membre {
 	
     const SEXE = "homme";
     

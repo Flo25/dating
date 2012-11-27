@@ -14,41 +14,34 @@ class User {
     public function authentification()
     {
 		$connexion = ConnexionBD::getInstance();
-		
-		$sql = "SELECT * FROM membre WHERE email=? AND mdp=?";
-		$req = $connexion->prepare($sql);
+		$cnx=$connexion->getLcn();
+		$sql = "SELECT pseudo FROM membre WHERE email=? AND mdp=?";
+		$req=$cnx->prepare($sql);
 		$param = array($_POST['email'],$_POST['mdp']);
 		$req->execute($param);
 		
 		$data = $req->fetch();
 		
-		if(empty($data))
-		{
-			echo "pas de connexion";
-		}
-		else
-		{
-			echo "Connexion OK";
-		}
+		return $data;
     }
 	
-	public function recherche()
+	public function recherche($annee2="",$annee1="")
 	{
 		$connexion = ConnexionBD::getInstance();
+		$cnx=$connexion->getLcn();
 		
 		$list=array();
-		$sql = "SELECT * FROM membre WHERE sexe=? BETWEEN age=? and age=?";
-		$req = $connexion->prepare($sql);
-		$param = array($_POST['sexe'],$_POST['age1'],$_POST['age2']);
+		$sql = "SELECT email FROM membre WHERE sexe=? AND YEAR(dateNaissance)>=? AND YEAR(dateNaissance)<=?";
+		$req = $cnx->prepare($sql);
+		$param = array($_POST['sexe'],$annee2,$annee1);
 		$req->execute($param);
- 
-        while ($data =$req->fetch())
+		
+		while ($data =$req->fetch())
         {
                 $list[] = $data;
         }
- 
+
         return $list;
-	
 	}
 
     public function getEmail()

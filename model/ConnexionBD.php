@@ -11,31 +11,22 @@ class ConnexionBD {
     private $port="3306";//port de cnx
 	private $lcn;
 
-    //////////////////////////////////////////////////////
-    //              CONSTRUCTEUR                        //
-    //                                                  //
-    //////////////////////////////////////////////////////
 
     private function __construct() 
 	{
         //---on essaye d'executer des instructions qui pourraient generer des erreurs!
         try {
             //----on se connecte en utilisant les parametres
-            $lcn = new PDO("$this->pilote:host=$this->db_srv;dbname=$this->db_name;$this->port", $this->db_user, $this->db_pwd);
+            $this->lcn = new PDO("$this->pilote:host=$this->db_srv;dbname=$this->db_name;$this->port", $this->db_user, $this->db_pwd);
             //---on modifie un des attribut par default pour gerer les erreur sur tt le script pas seulement sur la connection
-            $lcn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-            $lcn->exec("SET NAMES 'UTF8'");
+            $this->lcn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+            $this->lcn->exec("SET NAMES 'UTF8'");
         }
         //on attrape les erreur a ce niveau
         catch (PDOException $e) {
             $lcn = "Echec de l'exécution : " . $e->getMessage();
         }
     }
-
-    //////////////////////////////////////////////////////
-    //              METHODES                            //
-    //                                                  //
-    //////////////////////////////////////////////////////
 
 
     public function seDeconnecter($lcn) 
@@ -45,10 +36,10 @@ class ConnexionBD {
 	
 	public static function getInstance()
 		{
-			if(!isSet(self::$instance))
+			if(!isset(self::$instance))
 			{
-				$class = _CLASS_ ;
-				self::$instance = new $class();
+				//$class = _CLASS_ ;
+				self::$instance = new ConnexionBD();
 				echo "<br />La classe est instanciée";
 			}
 			else
@@ -57,11 +48,6 @@ class ConnexionBD {
 			}
 			return self::$instance;
 		}
-
-    //////////////////////////////////////////////////////
-    //              GETTERS and SETTERS                 //
-    //                                                  //
-    //////////////////////////////////////////////////////
 
     public function getPilote() {
         return $this->pilote;
@@ -101,6 +87,14 @@ class ConnexionBD {
 
     public function setDb_name($db_name) {
         $this->db_name = $db_name;
+    }
+	
+	public function getLcn() {
+        return $this->lcn;
+    }
+
+    public function setLcn($lcn) {
+        $this->lcn = $lcn;
     }
 
 }

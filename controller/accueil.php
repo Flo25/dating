@@ -7,6 +7,8 @@
 	<body>
 	<?php echo "ceci est la page accueil"; ?>
 	<br />
-	<a href="indexTest.php?page=news">Voir les news </a>
+	<a href="index.php?page=auth">Se connecter </a> <br />
+	<a href="index.php?page=recherche">Rechercher </a> <br />
+	<a href="index.php?page=inscription">S'inscrire </a> <br />
 	</body>
 </html>

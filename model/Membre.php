@@ -1,6 +1,6 @@
 <?php
 
-class Client extends User {
+class Membre extends User {
     
 	private $pseudo;
 	private $dateNaissance;
@@ -8,7 +8,7 @@ class Client extends User {
     const QUALITE = "FO";
     
 	
-    function __construct($email,$mdp,$pseudo,$dateNaissance)
+    function __construct($email="",$mdp="",$pseudo="",$dateNaissance="")
 	{  
 		$this->pseudo = $pseudo;
 		$this->dateNaissance = $dateNaissance;
@@ -18,24 +18,30 @@ class Client extends User {
 	
     public function inscription()
 	{
+		$date = $_POST['dateNaissance'];
+		$date = str_replace ( "/" , "-" , $date );
+		$dateNaissance = date("Y-m-d", strtotime($date)); 
+		
         $connexion = ConnexionBD::getInstance();
+		$cnx=$connexion->getLcn();
 		
 		$sql = "INSERT INTO membre (email,mdp,pseudo,dateNaissance,sexe,qualite,etat) VALUES (?,?,?,?,?,?,?)";
-		$req = $connexion->prepare($sql);
-		$param = array($_POST['email'],$_POST['mdp'],,$_POST['pseudo'],,$_POST['dateNaissance'],$_POST['sexe'],self::QUALITE,'O');
+		$req = $cnx->prepare($sql);
+		$param = array($_POST['email'],$_POST['mdp'],$_POST['pseudo'],$dateNaissance,$_POST['sexe'],self::QUALITE,'O');
 		$req->execute($param);
     }
     
     public function modifProfil()
 	{
         $connexion = ConnexionBD::getInstance();
+		$cnx=$connexion->getLcn();
 		
 		$sql = "UPDATE profil SET lieu=?, job=?, poids=?, taille=?, origine=?, cheveux=?, yeux=?, photo=? WHERE idMembre='"$_SESSION['id']"' ";
-		$req = $connexion->prepare($sql);
+		$req = $cnx->prepare($sql);
 		$param = array($_POST['lieu'],$_POST['job'],$_POST['poids'],$_POST['taille'],$_POST['origine'],$_POST['cheveux'],$_POST['yeux'],$_POST['photo']);
 		$req->execute($param);
     }
-	
+	/*
 	public function demandeMdp()
 	{
 		$connexion = ConnexionBD::getInstance();
@@ -163,7 +169,7 @@ class Client extends User {
 		else
 		echo 'mail envoye' . ' ' . '<a href=index.php>Cliquez ici pour revenir à l accueil</a>';
 		
-	}
+	}*/
 	
 	public function getPseudo()
 	{
