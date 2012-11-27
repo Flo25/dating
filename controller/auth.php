@@ -1,5 +1,7 @@
 <?php
 
+session_start();
+
 //On inclut le modèle
 include('/../model/ConnexionBD.php');
 include('/../model/User.php');
@@ -19,7 +21,7 @@ if(!empty($_POST['email']) && !empty($_POST['mdp']))
 		else
 		{
 			$_SESSION['pseudo'] = $auth['pseudo'];
-			header ('Location: /../view/espaceperso.php');
+			header ('Location: /dating/view/espaceperso.php');
 		}
 }
 else
