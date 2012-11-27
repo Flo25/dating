@@ -41,7 +41,7 @@ class Membre extends User {
 		$param = array($_POST['lieu'],$_POST['job'],$_POST['poids'],$_POST['taille'],$_POST['origine'],$_POST['cheveux'],$_POST['yeux'],$_POST['photo']);
 		$req->execute($param);
     }
-	/*
+	
 	public function demandeMdp()
 	{
 		$connexion = ConnexionBD::getInstance();

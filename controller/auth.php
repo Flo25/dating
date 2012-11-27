@@ -14,14 +14,22 @@ if(!empty($_POST['email']) && !empty($_POST['mdp']))
 {
 	$user = new User();
 	$auth = $user->authentification();
+	
+	print_r($auth);
+	
 	if(empty($auth))
 		{
 			echo "pas de connexion";
 		}
 		else
 		{
-			$_SESSION['pseudo'] = $auth['pseudo'];
-			header ('Location: /dating/view/espaceperso.php');
+			$_SESSION['id'] = $auth[0];
+			$_SESSION['pseudo'] = $auth[1];
+			
+			if($auth[2] == 'BO')
+				header ('Location: /dating/view/admin.php');
+			else 
+				header ('Location: /dating/view/espaceperso.php');
 		}
 }
 else

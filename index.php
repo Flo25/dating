@@ -8,6 +8,6 @@ if (!empty($_GET['page']) && is_file('controller/'.$_GET['page'].'.php'))
 }
 else
 {
-	include 'controller/accueil.php';
+	include 'view/accueil.php';
 }
 ?>

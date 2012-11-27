@@ -15,7 +15,7 @@ class User {
     {
 		$connexion = ConnexionBD::getInstance();
 		$cnx=$connexion->getLcn();
-		$sql = "SELECT pseudo FROM membre WHERE email=? AND mdp=?";
+		$sql = "SELECT id,pseudo,qualite FROM membre WHERE email=? AND mdp=?";
 		$req=$cnx->prepare($sql);
 		$param = array($_POST['email'],$_POST['mdp']);
 		$req->execute($param);
