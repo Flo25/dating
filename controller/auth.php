@@ -12,7 +12,6 @@ if(!empty($_POST['email']) && !empty($_POST['mdp']))
 {
 	$user = new User();
 	$auth = $user->authentification();
-	header(location:index.php);
 	if(empty($auth))
 		{
 			echo "pas de connexion";
