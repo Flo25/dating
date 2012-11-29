@@ -4,17 +4,19 @@ html
    background-image: url(../img/arriereplan3.jpg);
    background-position: center top;
    background-repeat: no-repeat;
-   
+   color: white;
+    
 }
-  
+
 h1
 {
     font-family: Arial,Helvetica,sans-serif;
     font-size:3em;
     color: grey;
     margin-top: 1em;
-    position: absolute;
-    left: 6em;
+    position: relative;
+    left: 2em;
+    
 }
 
 body{
@@ -24,16 +26,28 @@ body{
     }
 .logo
 {
-    
-    position: fixed;
-    top: 2em;
-    left:10em
+   position: relative;
+   top: -7em;
+   left:-1em;
 }
 
-.couple
+nav
 {
-    position:fixed;
-    right: 10em;
-    top: 17em;
     
+    border-right-style: double;
+    border-left-style: double;
+    border-bottom-style: double;
+    border-top-style: double;
+    top: 1.5em;
+    border-right-color: black;
+    border-left-color: black;
+    border-bottom-color: black;
+    border-top-color: black;
+    background-color: black;
 }
+#blocpage
+{
+    width: 900px;
+    margin: auto;
+}
+

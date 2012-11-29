@@ -2,8 +2,13 @@
 		<html>
 			<head>
 				<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-				<title></title>
+				<link rel="stylesheet" href="/dating/src/css/style.css" />
+                                <title>Insta Dating</title>
 			</head>
+                        <header>
+                            <h1>Insta Dating</h1>    
+                            <img class="logo" src="/dating/src/img/tn_logo.jpg" alt="logo" />
+                        </header>
 			<body>
 			
 				<form method="POST" action="#">
